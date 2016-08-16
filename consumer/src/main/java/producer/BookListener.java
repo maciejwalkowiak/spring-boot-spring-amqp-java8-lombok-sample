@@ -15,8 +15,8 @@ class BookListener {
     @RabbitListener(
             bindings = @QueueBinding(
                     exchange = @Exchange(value = "spring.amqp.sample", type = "topic"),
-                    value = @Queue(value = "book.published", durable = "true"),
-                    key = "book"
+                    value = @Queue(value = "book.published.queue", durable = "true"),
+                    key = "book.published"
             )
     )
     void listen(Book article) {

@@ -17,7 +17,7 @@ class BookController {
     @GetMapping("/book")
     Book book(@RequestParam String title, @RequestParam Optional<String> subtitle) {
         Book book = new Book(title, subtitle);
-        rabbitTemplate.convertAndSend("spring.amqp", "book", book);
+        rabbitTemplate.convertAndSend("spring.amqp.sample", "book.published", book);
         return book;
     }
 
