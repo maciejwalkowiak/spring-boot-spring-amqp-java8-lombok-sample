@@ -28,6 +28,7 @@ public class BookListenerTest {
     @Configuration
     @RabbitListenerTest(spy = false, capture = true)
     static class Config {
+
         @Bean
         BookListener bookListener() {
             return new BookListener();
@@ -53,6 +54,7 @@ public class BookListenerTest {
 
         InvocationData invocationData = harness.getNextInvocationDataFor(BookListener.LISTENER_ID, 10, TimeUnit.SECONDS);
         assertThat(invocationData).isNotNull();
-        assertThat(invocationData.getArguments()[0]).isEqualTo(publishedBook);
+        assertThat(invocationData.getArguments()).isNotNull()
+                                                 .containsExactly(publishedBook);
     }
 }
