@@ -9,9 +9,12 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 class BookService {
     private final RabbitTemplate rabbitTemplate;
+    private final ProducerProperties producerProperties;
 
     Book save(Book book) {
-        rabbitTemplate.convertAndSend("spring.amqp.sample", "book.published", book);
+        rabbitTemplate.convertAndSend(producerProperties.getExchange(),
+                                      producerProperties.getRoutingKey(),
+                                      book);
         return book;
     }
 }

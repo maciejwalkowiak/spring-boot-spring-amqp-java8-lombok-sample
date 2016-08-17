@@ -8,10 +8,16 @@ import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
+import lombok.AllArgsConstructor;
+
 @SpringBootApplication
+@EnableConfigurationProperties(ProducerProperties.class)
+@AllArgsConstructor
 public class RabbitProducerApplication {
+    private final ProducerProperties producerProperties;
 
     public static void main(String[] args) {
         SpringApplication.run(RabbitProducerApplication.class, args);
@@ -19,7 +25,7 @@ public class RabbitProducerApplication {
 
     @Bean
     Exchange exchange() {
-        return ExchangeBuilder.topicExchange("spring.amqp.sample").build();
+        return ExchangeBuilder.topicExchange(producerProperties.getExchange()).build();
     }
 
     @Bean

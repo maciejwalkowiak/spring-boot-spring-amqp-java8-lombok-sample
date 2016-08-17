@@ -33,6 +33,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- processes @ConfigurationProperties in order to get autocompletion in IDE -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
 		<!-- serialize java.util.Optional to JSON -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>

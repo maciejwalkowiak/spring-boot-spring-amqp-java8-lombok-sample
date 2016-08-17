@@ -1,6 +1,6 @@
 package producer;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import lombok.Value;
@@ -9,5 +9,5 @@ import lombok.Value;
 class Book {
     String title;
     Optional<String> subtitle;
-    ZonedDateTime publishedAt;
+    LocalDateTime publishedAt;
 }
