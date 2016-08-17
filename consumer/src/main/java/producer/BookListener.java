@@ -11,12 +11,14 @@ import org.springframework.stereotype.Component;
 @Component
 class BookListener {
     private static final Logger LOG = LoggerFactory.getLogger(BookListener.class);
+    static final String LISTENER_ID = "bookListener";
 
     @RabbitListener(
+            id = LISTENER_ID,
             bindings = @QueueBinding(
-                    exchange = @Exchange(value = "spring.amqp.sample", type = "topic"),
-                    value = @Queue(value = "book.published.queue", durable = "true"),
-                    key = "book.published"
+                    exchange = @Exchange(value = "#{consumerProperties.exchange}", type = "topic"),
+                    value = @Queue(value = "#{consumerProperties.queue}", durable = "true"),
+                    key = "#{consumerProperties.routingKey}"
             )
     )
     void listen(Book article) {
