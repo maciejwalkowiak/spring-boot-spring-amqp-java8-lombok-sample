@@ -1,6 +1,5 @@
 package consumer;
 
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,13 +11,11 @@ import lombok.AllArgsConstructor;
 @RestController
 @AllArgsConstructor
 class BookController {
-    private final RabbitTemplate rabbitTemplate;
+    private final BookService bookService;
 
     @GetMapping("/book")
     Book book(@RequestParam String title, @RequestParam Optional<String> subtitle) {
-        Book book = new Book(title, subtitle);
-        rabbitTemplate.convertAndSend("spring.amqp.sample", "book.published", book);
-        return book;
+        return bookService.save(new Book(title, subtitle));
     }
 
 }
