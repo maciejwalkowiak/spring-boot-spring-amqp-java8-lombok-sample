@@ -15,11 +15,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Tests for {@link BookController}
+ * Tests for {@link BookService}
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class BookControllerTest {
+public class BookServiceTest {
 
     @Autowired
     private BookService bookService;

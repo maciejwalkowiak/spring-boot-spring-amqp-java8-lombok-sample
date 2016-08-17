@@ -1,8 +1,5 @@
 package consumer;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -46,14 +43,9 @@ public class BookListenerTest {
     @Autowired
     private RabbitListenerTestHarness harness;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
     @Test
-    public void shouldReceiveMessage() throws InterruptedException, JsonProcessingException {
+    public void shouldReceiveMessage() throws InterruptedException {
         Book publishedBook = new Book("title", Optional.of("subtitle"), LocalDateTime.now());
-
-        System.out.println(objectMapper.writeValueAsString(publishedBook));
 
         rabbitTemplate.convertAndSend(consumerProperties.getExchange(),
                                       consumerProperties.getRoutingKey(),
