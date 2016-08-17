@@ -1,4 +1,4 @@
-package consumer;
+package producer;
 
 import java.time.LocalDateTime;
 import java.util.Optional;

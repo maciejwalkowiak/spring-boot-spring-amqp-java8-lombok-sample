@@ -1,12 +1,15 @@
 package consumer;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 import lombok.Data;
 
-@ConfigurationProperties("producer")
+@ConfigurationProperties("consumer")
 @Data
-class ProducerProperties {
+@Component
+class ConsumerProperties {
     private String exchange;
     private String routingKey;
+    private String queue;
 }

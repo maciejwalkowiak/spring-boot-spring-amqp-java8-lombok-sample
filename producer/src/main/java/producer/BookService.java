@@ -1,4 +1,4 @@
-package consumer;
+package producer;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
