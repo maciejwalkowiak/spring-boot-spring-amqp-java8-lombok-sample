@@ -19,9 +19,7 @@ public class RabbitConsumerApplication {
 
     @Bean
     MessageConverter messageConverter(ObjectMapper objectMapper) {
-        Jackson2JsonMessageConverter jackson2JsonMessageConverter = new Jackson2JsonMessageConverter();
-        jackson2JsonMessageConverter.setJsonObjectMapper(objectMapper);
-        return jackson2JsonMessageConverter;
+        return new Jackson2JsonMessageConverter(objectMapper);
     }
 }
 

@@ -11,28 +11,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
-import lombok.AllArgsConstructor;
-
 @SpringBootApplication
 @EnableConfigurationProperties(ProducerProperties.class)
-@AllArgsConstructor
 public class RabbitProducerApplication {
-    private final ProducerProperties producerProperties;
 
     public static void main(String[] args) {
         SpringApplication.run(RabbitProducerApplication.class, args);
     }
 
     @Bean
-    Exchange exchange() {
+    Exchange exchange(ProducerProperties producerProperties) {
         return ExchangeBuilder.topicExchange(producerProperties.getExchange()).build();
     }
 
     @Bean
     MessageConverter messageConverter(ObjectMapper objectMapper) {
-        Jackson2JsonMessageConverter jackson2JsonMessageConverter = new Jackson2JsonMessageConverter();
-        jackson2JsonMessageConverter.setJsonObjectMapper(objectMapper);
-        return jackson2JsonMessageConverter;
+        return new Jackson2JsonMessageConverter(objectMapper);
     }
 }
 
