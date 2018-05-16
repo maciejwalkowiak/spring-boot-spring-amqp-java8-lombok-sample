@@ -38,7 +38,7 @@ lombok.anyConstructor.suppressConstructorProperties=false
 
 - by default **Spring AMQP** does not utilize Spring Boot configured Jackson `ObjectMapper`. To take the advantage of Jackson autoconfiguration you need to add following bean:
 
-```
+```java
 @Bean
 MessageConverter messageConverter(ObjectMapper objectMapper) {
     return new Jackson2JsonMessageConverter(objectMapper);
@@ -50,7 +50,7 @@ This is why it's a good idea to externalise properties like *queue name*, *routi
 - integration testing of the listener should only cover if message gets received and if it's deserialized properly. Testing the logic should not be a part of an integration test
 - to write integration test for a listener following dependency has to be added:
 
-```
+```xml
 <dependency>
     <groupId>org.springframework.amqp</groupId>
     <artifactId>spring-rabbit-test</artifactId>
