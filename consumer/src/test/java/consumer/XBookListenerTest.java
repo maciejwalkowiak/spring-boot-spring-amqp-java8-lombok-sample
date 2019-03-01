@@ -19,8 +19,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Tests for {@link BookListener}
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
-public class BookListenerTest {
+@SpringBootTest(properties = "foo=bar")
+public class XBookListenerTest {
 
     @Autowired
     private ConsumerProperties consumerProperties;
